@@ -9,6 +9,7 @@ import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
  */
 // Debug
 const gui = new GUI();
+gui.hide();
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl');
@@ -24,7 +25,7 @@ const scene = new THREE.Scene();
  * Textures
  */
 const textureLoader = new THREE.TextureLoader();
-const matcapTexture = textureLoader.load('/textures/matcaps/8.png');
+const matcapTexture = textureLoader.load('/textures/matcaps/7.png');
 matcapTexture.colorSpace = THREE.SRGBColorSpace;
 
 /**
@@ -33,7 +34,7 @@ matcapTexture.colorSpace = THREE.SRGBColorSpace;
 
 const fontLoader = new FontLoader();
 fontLoader.load('/fonts/helvetiker_regular.typeface.json', (font) => {
-	const textGeometry = new TextGeometry('Hello Threejs', {
+	const textGeometry = new TextGeometry('Send Nudes', {
 		font: font,
 		size: 0.5,
 		height: 0.2,
@@ -65,7 +66,7 @@ fontLoader.load('/fonts/helvetiker_regular.typeface.json', (font) => {
 
 	const donutGeometry = new THREE.TorusGeometry(0.3, 0.2, 20, 45);
 
-    for (let i = 0; i < 500; i++) {
+	for (let i = 0; i < 500; i++) {
 		const torus = new THREE.Mesh(donutGeometry, material);
 		scene.add(torus);
 
