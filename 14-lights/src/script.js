@@ -23,31 +23,55 @@ const ambientLight = new THREE.AmbientLight(0xffffff, 1);
 gui.add(ambientLight, 'intensity').min(0).max(3).step(0.001);
 gui.addColor(ambientLight, 'color');
 
-
-const directionalLight = new THREE.DirectionalLight(0x00fffc, 0.9)
-directionalLight.position.set(1,0.25, 0)
+const directionalLight = new THREE.DirectionalLight(0x00fffc, 0.9);
+directionalLight.position.set(1, 0.25, 0);
 // scene.add(directionalLight)
 
-
-const hemisphereLight = new THREE.HemisphereLight(0xff0000, 0x0000ff, 0.9)
+const hemisphereLight = new THREE.HemisphereLight(0xff0000, 0x0000ff, 0.9);
 // scene.add(hemisphereLight)
 
-
-const pointLight = new THREE.PointLight(0xff9000, 1.5, 3)
-pointLight.position.set(1, 0.01, 1)
+const pointLight = new THREE.PointLight(0xff9000, 1.5, 3);
 // scene.add(pointLight)
 
+const rectAreaLight = new THREE.RectAreaLight(0x4e00ff, 6, 1, 1);
+rectAreaLight.position.set(-1.5, 0, 1.5);
+rectAreaLight.lookAt(new THREE.Vector3());
+// scene.add(rectAreaLight);
 
-const rectAreaLight = new THREE.RectAreaLight(0x4e00ff, 6, 1, 1)
-rectAreaLight.position.set(-1.5,0,1.5)
-rectAreaLight.lookAt(new THREE.Vector3())
-scene.add(rectAreaLight)
+const spotLight = new THREE.SpotLight(
+	0x78ff00,
+	4.5,
+	10,
+	Math.PI * 0.1,
+	0.25,
+	1
+);
+spotLight.position.set(0, 2, 3);
+spotLight.target.position.x = -0.75;
+scene.add(spotLight.target);
 
+// scene.add(spotLight);
 
-const spotLight = new THREE.SpotLight(0x78ff00, 4.5, 10, Math.PI * 0.1, 0.25, 1)
-spotLight.position.set(0,2,3)
-scene.add(spotLight)
+/**
+ * Helpers
+ */
 
+const hemisphereLightHelper = new THREE.HemisphereLightHelper(
+	hemisphereLight,
+	0.2
+);
+
+// scene.add(hemisphereLightHelper)
+// scene.add(hemisphereLight)
+
+// const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight, 0.2)
+// scene.add(directionalLight)
+// scene.add(directionalLightHelper)
+
+const pointLightHelper = new THREE.PointLightHelper(pointLight, 0.1);
+scene.add(pointLight);
+scene.add(pointLightHelper);
+pointLight.position.set(1, 0.5, 1);
 
 /**
  * Objects
