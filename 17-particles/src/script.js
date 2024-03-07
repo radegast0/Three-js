@@ -119,6 +119,7 @@ const clock = new THREE.Clock()
 const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
+    // const time = Date.now() 
 
     // Update particles
     // particles.rotation.y = - elapsedTime * 0.2
