@@ -1,14 +1,17 @@
 import {
+	Float,
+	Text,
 	Html,
 	OrbitControls,
 	TransformControls,
 	PivotControls,
+	MeshReflectorMaterial,
 } from '@react-three/drei';
 import React, { useRef } from 'react';
 
 export default function Experience() {
 	const cube = useRef();
-    const sphere = useRef();
+	const sphere = useRef();
 	return (
 		<>
 			<OrbitControls makeDefault />
@@ -25,7 +28,13 @@ export default function Experience() {
 				<mesh ref={sphere} position-x={-2}>
 					<sphereGeometry />
 					<meshStandardMaterial color="orange" />
-					<Html occlude={[sphere, cube]} distanceFactor={6} center position={[1, 1, 0]} wrapperClass="label">
+					<Html
+						occlude={[sphere, cube]}
+						distanceFactor={6}
+						center
+						position={[1, 1, 0]}
+						wrapperClass="label"
+					>
 						That's a sphere 👍
 					</Html>
 				</mesh>
@@ -39,8 +48,21 @@ export default function Experience() {
 
 			<mesh position-y={-1} rotation-x={-Math.PI * 0.5} scale={10}>
 				<planeGeometry />
-				<meshStandardMaterial color="greenyellow" />
+				{/* <meshStandardMaterial color="greenyellow" /> */}
+				<MeshReflectorMaterial blur={[1000, 1000]} mixBlur={1} mirror={0.5} resolution={512} color='greenyellow' />
 			</mesh>
+			<Float floatIntensity={2} speed={5}>
+				<Text
+					color="salmon"
+					maxWidth={2}
+					textAlign="center"
+					position-y={2}
+					fontSize={1}
+					font="./bangers-v20-latin-regular.woff"
+				>
+					Send Nudes
+				</Text>
+			</Float>
 		</>
 	);
 }
