@@ -39,43 +39,48 @@ export default function Experience() {
 			{/* <Environment
 				// background
 				preset="sunset"
-				ground= {{
+				ground={{
 					height: envMapHeight,
 					radius: envMapRadius,
-					scale: envMapScale
+					scale: envMapScale,
 				}}
-				// resolution={32}
-				// files={'./environmentMaps/the_sky_is_on_fire_2k.hdr'}
-				// files={[
-				// 	'./environmentMaps/2/px.jpg',
-				// 	'./environmentMaps/2/nx.jpg',
-				// 	'./environmentMaps/2/py.jpg',
-				// 	'./environmentMaps/2/ny.jpg',
-				// 	'./environmentMaps/2/pz.jpg',
-				// 	'./environmentMaps/2/nz.jpg',
-				// ]}
-			> */}
-			{/* <Lightformer
+				resolution={32}
+				files={'./environmentMaps/the_sky_is_on_fire_2k.hdr'}
+				files={[
+					'./environmentMaps/2/px.jpg',
+					'./environmentMaps/2/nx.jpg',
+					'./environmentMaps/2/py.jpg',
+					'./environmentMaps/2/ny.jpg',
+					'./environmentMaps/2/pz.jpg',
+					'./environmentMaps/2/nz.jpg',
+				]}
+			>
+				<Lightformer
 					position-z={-5}
 					scale={10}
 					form="ring"
 					color="red"
 					intensity={10}
 				/>
-				<color args={['black']} attach="background" /> */}
-			{/* <mesh position-z={-5} scale={10}>
+				<color
+					args={['black']}
+					attach="background"
+				/>{' '}
+				
+				<mesh
+					position-z={-5}
+					scale={10}
+				>
 					<planeGeometry />
 					<meshBasicMaterial color={[10, 0, 0]} />
-				</mesh> */}
-			{/* </Environment> */}
-			{/* <BakeShadows /> */}
-			{/* <color attach="background" args={['ivory']} /> */}
-
-			<Perf position="top-left" />
-
+				</mesh>{' '}
+				
+			</Environment>{' '} */}
+			
+			{/* <BakeShadows /> 
+			<Perf position="top-left" /> */}
 			<OrbitControls makeDefault />
-
-			{/* <directionalLight
+			 {/* <directionalLight
 				ref={directionalLight}
 				position={[1, 2, 3]}
 				intensity={4.5}
@@ -87,17 +92,19 @@ export default function Experience() {
 				shadow-camera-right={5}
 				shadow-camera-bottom={-5}
 				shadow-camera-left={-5}
-			/> */}
+			/>  */}
 			{/* <ambientLight intensity={1.5} /> */}
-			{/* <Sky sunPosition={sunPosition} /> */}
-
-			<Stage
+			<Sky />
+			{/* <Stage
 				shadows={{ type: 'contact', opacity: 0.2, blur: 3 }}
 				environment="sunset"
 				preset="portrait"
 				intensity={6}
-			>
-				<mesh castShadow position={[-2, 1, 0]}>
+			> */}
+				<mesh
+					castShadow
+					position={[-2, 1, 0]}
+				>
 					<sphereGeometry />
 					<meshStandardMaterial
 						envMapIntensity={envMapIntensity}
@@ -105,15 +112,19 @@ export default function Experience() {
 					/>
 				</mesh>
 
-				<mesh castShadow ref={cube} position={[2, 1, 0]} scale={1.5}>
+				<mesh
+					castShadow
+					ref={cube}
+					position={[2, 1, 0]}
+					scale={1.5}
+				>
 					<boxGeometry />
 					<meshStandardMaterial
 						envMapIntensity={envMapIntensity}
 						color="mediumpurple"
 					/>
 				</mesh>
-			</Stage>
-
+			{/* </Stage> */}
 			{/* <mesh
 				receiveShadow
 				position-y={0}
