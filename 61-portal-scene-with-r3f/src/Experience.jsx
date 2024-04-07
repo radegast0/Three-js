@@ -12,25 +12,28 @@ import * as THREE from 'three';
 import { extend, useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
 
-const PortalMaterial = shaderMaterial({
-	uTime: 0,
-	uColorStart: new THREE.Color('#ffffff'),
-	uColorEnd: new THREE.Color('#000000'),
+const PortalMaterial = shaderMaterial(
+	{
+		uTime: 0,
+		uColorStart: new THREE.Color('#ffffff'),
+		uColorEnd: new THREE.Color('#000000'),
 	},
 	portalVertexShader,
-	portalFragmentShader,
+	portalFragmentShader
 );
 
 extend({ PortalMaterial });
 
 export default function Experience() {
-	const { nodes } = useGLTF('./model/portal.glb');
-	const bakedTexture = useTexture('./model/baked.jpg');
+	const { nodes } = useGLTF('./model/portal-baked.glb');
+	const portalTexture = useTexture('./model/baked-original.jpg');
 
 	const portalMaterial = useRef();
-	useFrame((state, delta)=>{
+	useFrame((state, delta) => {
 		portalMaterial.current.uTime += delta;
-	})
+	});
+
+	console.log(nodes);
 
 	return (
 		<>
@@ -40,30 +43,44 @@ export default function Experience() {
 			/>
 
 			<OrbitControls makeDefault />
-
 			<Center>
-				<mesh geometry={nodes.baked.geometry}>
+				<mesh
+					position={nodes.baked.position}
+					rotation={nodes.baked.rotation}
+					geometry={nodes.baked.geometry}
+				>
 					<meshBasicMaterial
-						map={bakedTexture}
+						map={portalTexture}
 						map-flipY={false}
 					/>
 				</mesh>
 				<mesh
-					position={nodes.poleLightA.position}
-					geometry={nodes.poleLightA.geometry}
+					position={nodes.Cube011.position}
+					geometry={nodes.Cube011.geometry}
 				>
 					<meshBasicMaterial color="#ffffe5" />
 				</mesh>
 				<mesh
-					position={nodes.poleLightB.position}
-					geometry={nodes.poleLightB.geometry}
+					position={nodes.Cube014.position}
+					geometry={nodes.Cube014.geometry}
 				>
 					<meshBasicMaterial color="#ffffe5" />
 				</mesh>
 				<mesh
-					geometry={nodes.portalLight.geometry}
-					rotation={nodes.portalLight.rotation}
-					position={nodes.portalLight.position}
+					position={nodes.Circle.position}
+					geometry={nodes.Circle.geometry}
+					rotation={nodes.Circle.rotation}
+				>
+					<meshBasicMaterial color="#ffffe5" />
+				</mesh>
+				<mesh
+					geometry={nodes.Circle.geometry}
+					rotation={nodes.Circle.rotation}
+					position={[
+						nodes.Circle.position.x,
+						nodes.Circle.position.y,
+						nodes.Circle.position.z + 0.01,
+					]}
 				>
 					<portalMaterial ref={portalMaterial} />
 				</mesh>

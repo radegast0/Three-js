@@ -3,6 +3,7 @@ import {
 	Text3D,
 	Center,
 	useMatcapTexture,
+	Html,
 } from '@react-three/drei';
 import { Perf } from 'r3f-perf';
 import { useRef, useState, useEffect } from 'react';
@@ -52,7 +53,11 @@ export default function Experience() {
 					material={material}
 				>
 					Fatih Yonucuoglu
+					<Html>
+					Deneme
+				</Html>
 				</Text3D>
+				
 			</Center>
 
 			<group ref={donutsGroup}>
